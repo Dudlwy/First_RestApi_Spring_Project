@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @OpenAPIDefinition(info = @Info(title = "Products API for Vistula", version = "1.0", description = "Products Information"))
 public class FirstRestApiSpringApplication {
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         SpringApplication.run(FirstRestApiSpringApplication.class, args);
     }
 

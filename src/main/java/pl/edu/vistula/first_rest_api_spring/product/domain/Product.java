@@ -12,6 +12,7 @@ public class Product {
     private long id;
     private String name;
 
+    public Product() {}
     public Product(String name) {
         this.name = name;
     }

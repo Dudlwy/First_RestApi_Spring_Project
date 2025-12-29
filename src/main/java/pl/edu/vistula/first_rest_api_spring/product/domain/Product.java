@@ -1,6 +1,14 @@
 package pl.edu.vistula.first_rest_api_spring.product.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
+@Entity(name = "products")
 public class Product {
+
+    @Id
+    @GeneratedValue
     private long id;
     private String name;
 

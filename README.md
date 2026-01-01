@@ -15,7 +15,7 @@ This project is a RESTful API built with Spring Boot for managing products. It d
 2.  Open the project in IntelliJ IDEA.
 3.  Run `FirstRestApiSpringApplication`.
 4.  Open Swagger UI in your browser: `http://localhost:8080/swagger-ui/index.html`
-5.  Open H2 Console (optional): `http://localhost:8080/h2-console`
+5.  Open H2 Console (optional): `http://localhost:8080/console`
 
 ---
 

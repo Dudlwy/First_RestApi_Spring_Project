@@ -28,18 +28,17 @@ Creates a new product by providing a name. The ID is auto-generated.
 * **Request Body:**
     ```json
     {
-      "name": "string"
+      "name": "First product"
     }
     ```
 * **Response (201 Created):**
     ```json
     {
-      "id": 1,
-      "name": "string"
+      "name": "First product"
     }
     ```
 **Screenshot:**
-![img_4.png](img_4.png)
+![img.png](img.png)
 
 ---
 
@@ -50,24 +49,39 @@ Retrieves a specific product using its unique ID.
 * **Test:** Input ID `1`.
 * **Response (200 OK):** Returns the product details.
 
-**Screenshot:**
-![img.png](img.png)
+**Screenshot: Postman**
+![img_4.png](img_4.png)
+
+**Screenshot: Swagger**
+![img_3.png](img_3.png)
 
 ---
 
 ### Task 2.C & 2.D: Exception Handling (404 Not Found)
 If a user tries to find a product that does not exist, the API returns a custom error message instead of a generic server error.
 
-* **Test:** Input ID `99` (which does not exist).
+* **Test:** Input ID `1`(in swagger ui) (which does not exist).
 * **Response (404 Not Found):**
     ```json
     {
-      "message": "Product with 99 not found"
+      "message": "Product with 1 not found"
     }
     ```
 
-**Screenshot:**
-![img_1.png](img_1.png)
+**Screenshot: Swagger UI**
+![img_5.png](img_5.png)
+
+* **Test:** Input ID `25`(in postman) (which does not exist).
+* **Response (404 Not Found):**
+    ```json
+    {
+      "message": "Product with id 25 not found"
+    }
+    ```
+
+**Screenshot: Postman**
+![img_6.png](img_6.png)
+
 
 ---
 
@@ -75,17 +89,52 @@ If a user tries to find a product that does not exist, the API returns a custom 
 **Endpoint:** `PUT /api/v1/products/{id}`
 Updates the name of an existing product.
 
-* **Test:** Update Product ID `1` to "Updated name".
+Create a new product by providing a name. The ID is auto-generated.
+
 * **Request Body:**
     ```json
     {
-      "name": "Updated name"
+      "name": "First product"
+    }
+    ```
+* **Response (201 Created):**
+    ```json
+    {
+      "name": "First product"
+    }
+    ```
+**Screenshot:**
+![img_7.png](img_7.png)
+
+**Endpoint:** `GET /api/v1/products/{id}`
+Check if the product actually exists.
+
+* **Test:** Input ID `1`.
+* **Response (200 OK):** Returns the product details.
+
+**Screenshot: Postman**
+![img_8.png](img_8.png)
+
+* **Test:** Update Product ID `1`.
+* **Request Body:**
+    ```json
+    {
+      "name": "Our first prodduct... (edited)"
     }
     ```
 * **Response (200 OK):** The product name is updated in the database.
 
 **Screenshot:**
-![img_5.png](img_5.png)
+![img_9.png](img_9.png)
+
+**Endpoint:** `GET /api/v1/products/{id}`
+Check if the product was successfully edited.
+
+* **Test:** Input ID `1`.
+* **Response (200 OK):** Returns the product details.
+
+**Screenshot: Postman**
+![img_10.png](img_10.png)
 
 ---
 
@@ -94,37 +143,78 @@ Updates the name of an existing product.
 **Endpoint:** `GET /api/v1/products`
 Returns a list of all products currently in the database.
 
-* **Response:**
+* **Response body:**
     ```json
     [
-      { "id": 1, "name": "Iphone 15 Pro" },
-      { "id": 2, "name": "Samsung Galaxy" }
+       {
+          "name": "Product 1"
+       },
+       {
+          "name": "Product 2"
+       },
+       {
+          "name": "Product 3"
+       }
     ]
     ```
 
-**2. Delete a Product**
+**Screenshot: Swagger UI**
+![img_13.png](img_13.png)
+
+
+**2.A Delete a Product that does not exit**
+**Endpoint:** `DELETE /api/v1/products/{id}`
+Trying to remove a product that was not created.
+
+* **Test:** Delete ID `9`.
+* **Response (404 Not Found):**
+    ```json
+    {
+      "message": "Product with id 9 not found"
+    }
+    ```
+
+**Screenshot: Swagger UI**
+![img_14.png](img_14.png)
+
+**2.B Delete a Product that exists**
 **Endpoint:** `DELETE /api/v1/products/{id}`
 Removes a product permanently.
 
-* **Test:** Delete ID `1`.
+* **Test:** Delete ID `3`.
 * **Response (204 No Content):** Product is successfully removed.
 
-**Screenshot:**
-![img_2.png](img_2.png)
+**Screenshot: Swagger UI**
+![img_15.png](img_15.png)
 
+
+**1. Check updated list**
+**Endpoint:** `GET /api/v1/products`
+Returns a list of all products currently in the database.
+
+* **Response body:**
+    ```json
+    [
+       {
+          "name": "Product 1"
+       },
+       {
+          "name": "Product 2"
+       }
+    ]
+    ```
+
+**Screenshot: Swagger UI**
+![img_16.png](img_16.png)
 ---
 
 ---
 
 ### Task 2.G: H2 Database Connection (The Final Step)
 **Goal:** Verify that the application is connected to a real H2 database and that data is saved in the `PRODUCTS` table.
-<img width="1197" height="567" alt="image" src="https://github.com/user-attachments/assets/2fdf5796-4586-4498-95b0-92ab38e8030c" />
+![H2DatabaseConsole.png](H2DatabaseConsole.png)
 
 
-**Configuration Used (`application.properties`):**
-```properties
-spring.h2.console.enabled=true
-spring.datasource.url=jdbc:h2:mem:testdb
 
 
 
